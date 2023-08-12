@@ -129,7 +129,7 @@ function commandListener(fullCommand) {
       break;
     case ('theme'):
       if(!inputStr) {
-        addOutput("Write theme and your theme, the available themes are:\n&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;white&nbsp;&nbsp;&nbsp;&nbsp;ubuntu", feedbackColors[0]);
+        addOutput("Write theme and your theme, the available themes are:\ndefault&nbsp;&nbsp;&nbsp;&nbsp;white&nbsp;&nbsp;&nbsp;&nbsp;ubuntu", feedbackColors[0]);
       } else{
         themeChanger(inputStr);
       }
