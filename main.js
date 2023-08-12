@@ -129,10 +129,9 @@ function commandListener(fullCommand) {
       break;
     case ('theme'):
       if(!inputStr) {
-        addOutput("Write echo your message", feedbackColors[0]);
+        addOutput("Write theme and your theme, the available themes are:\n&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;white&nbsp;&nbsp;&nbsp;&nbsp;ubuntu", feedbackColors[0]);
       } else{
         themeChanger(inputStr);
-        addOutput("Theme changed sucessfully", feedbackColors[0]);
       }
       break;
     case ('welcome'):
@@ -158,6 +157,7 @@ function themeChanger(inputStr) {
   document.documentElement.style.setProperty('--color1', tempArray[2]);
   document.documentElement.style.setProperty('--color2', tempArray[3]);
   document.documentElement.style.setProperty('--color3', tempArray[4]);
+  addOutput("Theme changed sucessfully", feedbackColors[0]);
 }
 
 function applyColorRules() {
