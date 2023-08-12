@@ -8,11 +8,11 @@ const dir = "~";
 const text = prefix.textContent;
 prefix.innerHTML = applyColorRules(text);
 
-//debug | wrong | right | 
-const colorArray = ["color: #b7f2ff", "color: #f76f6f", "color: #42b36b"];
+//debug | wrong | right | default white
+const colorArray = ["#b7f2ff", "#f76f6f", "#42b36b", "#e9e7e7"];
 
 //auto complete
-const availableCommands = ["help", "theme", "welcome", "aboutme", "social", "echo", "clear"];
+const availableCommands = ["aboutme", "clear", "echo", "help", "social", "theme", "welcome"];
 let commandsHistory = [];
 let historyIndex = 1;
 
@@ -24,9 +24,13 @@ function verifyInput(input) {
   const command = commandArr[0];
 
   if (availableCommands.includes(command)) {
-    input.style = colorArray[2]; 
+    input.style.color = colorArray[2]; 
   } else {
-    input.style = colorArray[1]; 
+    input.style.color = colorArray[1]; 
+  }
+
+  if(command == '') {
+    input.style.color = colorArray[3];
   }
 }
 
@@ -50,6 +54,7 @@ input.addEventListener("keydown", function(event) {
     commandsHistory.push(input.value);
     historyIndex = -1;
     processInput();
+    input.style.color = colorArray[3];
   }
 
   else if (event.key === "ArrowUp") {
@@ -93,29 +98,48 @@ function commandListener(fullCommand) {
   const inputStr = commandArr.slice(1).join(' ');
 
   switch(command){
-    case ('help'):
-      addOutput(`Available commands:\nhelp &nbsp;&nbsp; - Display this help message\nabout - Display information about this terminal`, colorArray[0]);
-      break;
-    case ('theme'):
-      addOutput(`working on it`, colorArray[0]);
-      document.documentElement.style.setProperty('--background', '#ffffff');
-      break;
     case ('aboutme'):
       addOutput(`I am a programmer, 18 years old that loves to code`, colorArray[0]);
+      break;
+    case ('clear'):
+      output.innerHTML = "";
+      break;
+    case ('echo'):
+      if(!inputStr) {
+        addOutput("Write echo your message", colorArray[0]);
+      } else{
+        addOutput(inputStr, colorArray[0]);
+      }
+      break;
+    case ('help'):
+      addOutput(`Available commands:\nhelp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Display this help message\naboutme &nbsp;&nbsp;&nbsp;&nbsp; - Display information about this terminal`, colorArray[0]);
       break;
     case ('social'):
       addOutput(`Social Media...\nImagine\nImagine2`, colorArray[0]);
       break;
-    case ('echo'):
-      addOutput(inputStr, colorArray[0]);
+    case ('theme'):
+      if(!inputStr) {
+        addOutput("Write echo your message", colorArray[0]);
+      } else{
+        themeChanger(inputStr);
+        addOutput("Theme changed sucessfully", colorArray[0]);
+      }
       break;
-    case ('clear'):
-      output.innerHTML = "";
+    case ('welcome'):
+      addOutput(`Available commands:\nhelp &nbsp;&nbsp;&nbsp;&nbsp; - Display this help message\naboutme &nbsp;&nbsp;&nbsp;&nbsp; - Display information about this terminal`, colorArray[0]);
       break;
     default:
       addOutput(`Command not found: ${command}\n`, colorArray[1]);
       break;
     }
+}
+
+function themeChanger(inputStr) {
+  document.documentElement.style.setProperty('--background', '#ffffff');
+  document.documentElement.style.setProperty('--color', '#ffffff');
+  document.documentElement.style.setProperty('--color1', '#ffffff');
+  document.documentElement.style.setProperty('--color2', '#ffffff');
+  document.documentElement.style.setProperty('--color3', '#ffffff');
 }
 
 function applyColorRules() {
@@ -127,7 +151,7 @@ function applyColorRules() {
 function addOutput(text, style, hasPrefix = false) {
   const messageBox = document.createElement('div');
   const outputText = document.createElement('span');
-  outputText.style = style;
+  outputText.style.color = style;
   if(hasPrefix){
     outputText.innerHTML = applyColorRules(text.substring(0, prefix.textContent.length)) + text.substring(prefix.textContent.length);
   }
