@@ -1,9 +1,9 @@
 :root {
     --background: #000;
     --color: #e9e7e7;
-    --color1: aqua;
-    --color2: blueviolet;
-    --color3: cornflowerblue;
+    --color1: #4da7a7;
+    --color2: #9a5fd1;
+    --color3: #9ab7ed;
     --size: 1;
     --animation: terminal-blink;
 }  

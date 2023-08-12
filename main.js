@@ -9,7 +9,11 @@ const text = prefix.textContent;
 prefix.innerHTML = applyColorRules(text);
 
 //debug | wrong | right | default white
-const colorArray = ["#b7f2ff", "#f76f6f", "#42b36b", "#e9e7e7"];
+const feedbackColors = ["#b7f2ff", "#f76f6f", "#42b36b", "#e9e7e7"];
+
+const defaultTheme = ["#000", "#e9e7e7", "#4da7a7", "#9a5fd1", "#9ab7ed"];
+const whiteTheme = ["#e9e7e7", "#000", "#4da7a2", "#9a5fd2", "#9ab7e2"];
+const ubuntuTheme = ["#2d0922", "#e9e7e7", "#88dc33", "#88dc33", "#88dc33"];
 
 //auto complete
 const availableCommands = ["aboutme", "clear", "echo", "help", "social", "theme", "welcome"];
@@ -24,13 +28,13 @@ function verifyInput(input) {
   const command = commandArr[0];
 
   if (availableCommands.includes(command)) {
-    input.style.color = colorArray[2]; 
+    input.style.color = feedbackColors[2]; 
   } else {
-    input.style.color = colorArray[1]; 
+    input.style.color = feedbackColors[1]; 
   }
 
   if(command == '') {
-    input.style.color = colorArray[3];
+    input.style.color = feedbackColors[3];
   }
 }
 
@@ -45,7 +49,7 @@ input.addEventListener("keydown", function(event) {
     const matchingCommands = availableCommands.filter(command => command.startsWith(inputValue));
     if (matchingCommands.length === 1) {
       input.value = matchingCommands[0];
-      input.style = colorArray[2]
+      input.style = feedbackColors[2]
     }
   }
 
@@ -54,7 +58,7 @@ input.addEventListener("keydown", function(event) {
     commandsHistory.push(input.value);
     historyIndex = -1;
     processInput();
-    input.style.color = colorArray[3];
+    input.style.color = feedbackColors[3];
   }
 
   else if (event.key === "ArrowUp") {
@@ -99,47 +103,61 @@ function commandListener(fullCommand) {
 
   switch(command){
     case ('aboutme'):
-      addOutput(`I am a programmer, 18 years old that loves to code`, colorArray[0]);
+      addOutput(`I am a programmer, 18 years old that loves to code`, feedbackColors[0]);
       break;
     case ('clear'):
       output.innerHTML = "";
       break;
     case ('echo'):
       if(!inputStr) {
-        addOutput("Write echo your message", colorArray[0]);
+        addOutput("Write echo your message", feedbackColors[0]);
       } else{
-        addOutput(inputStr, colorArray[0]);
+        addOutput(inputStr, feedbackColors[0]);
       }
       break;
     case ('help'):
-      addOutput(`Available commands:\nhelp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Display this help message\naboutme &nbsp;&nbsp;&nbsp;&nbsp; - Display information about this terminal`, colorArray[0]);
+      addOutput(`Available commands:\nhelp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Display this help message`, feedbackColors[0]);
+      addOutput(`aboutme &nbsp;&nbsp;&nbsp;&nbsp; - Display information about me`, feedbackColors[0]);
+      addOutput(`clear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Clear the terminal`, feedbackColors[0]);
+      addOutput(`echo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Displays a message like: echo my message`, feedbackColors[0]);
+      addOutput(`social &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Displays my social networks`, feedbackColors[0]);
+      addOutput(`theme &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Change the terminal theme`, feedbackColors[0]);
+      addOutput(`welcome &nbsp;&nbsp;&nbsp;&nbsp; - Welcome message`, feedbackColors[0]);
       break;
     case ('social'):
-      addOutput(`Social Media...\nImagine\nImagine2`, colorArray[0]);
+      addOutput(`Social Media...\nImagine\nImagine2`, feedbackColors[0]);
       break;
     case ('theme'):
       if(!inputStr) {
-        addOutput("Write echo your message", colorArray[0]);
+        addOutput("Write echo your message", feedbackColors[0]);
       } else{
         themeChanger(inputStr);
-        addOutput("Theme changed sucessfully", colorArray[0]);
+        addOutput("Theme changed sucessfully", feedbackColors[0]);
       }
       break;
     case ('welcome'):
-      addOutput(`Available commands:\nhelp &nbsp;&nbsp;&nbsp;&nbsp; - Display this help message\naboutme &nbsp;&nbsp;&nbsp;&nbsp; - Display information about this terminal`, colorArray[0]);
+      addOutput(`working on it`, feedbackColors[0]);
       break;
     default:
-      addOutput(`Command not found: ${command}\n`, colorArray[1]);
+      addOutput(`Command not found: ${command}\n`, feedbackColors[1]);
       break;
     }
 }
 
 function themeChanger(inputStr) {
-  document.documentElement.style.setProperty('--background', '#ffffff');
-  document.documentElement.style.setProperty('--color', '#ffffff');
-  document.documentElement.style.setProperty('--color1', '#ffffff');
-  document.documentElement.style.setProperty('--color2', '#ffffff');
-  document.documentElement.style.setProperty('--color3', '#ffffff');
+  var tempArray = [];
+  if(inputStr == 'default') {
+    tempArray.push(...defaultTheme);
+  } else if(inputStr == 'white') {
+    tempArray.push(...whiteTheme);
+  } else if(inputStr == 'ubuntu') {
+    tempArray.push(...ubuntuTheme);
+  }else {return;}
+  document.documentElement.style.setProperty('--background', tempArray[0]);
+  document.documentElement.style.setProperty('--color', tempArray[1]);
+  document.documentElement.style.setProperty('--color1', tempArray[2]);
+  document.documentElement.style.setProperty('--color2', tempArray[3]);
+  document.documentElement.style.setProperty('--color3', tempArray[4]);
 }
 
 function applyColorRules() {
