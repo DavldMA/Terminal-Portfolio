@@ -9,7 +9,7 @@ const text = prefix.textContent;
 prefix.innerHTML = applyColorRules(text);
 
 //debug | wrong | right | default white
-const feedbackColors = ["#b7f2ff", "#f76f6f", "#42b36b", "#e9e7e7"];
+const feedbackColors = ["#44d2f3", "#f76f6f", "#42b36b", "#e9e7e7"];
 
 const defaultTheme = ["#000", "#e9e7e7", "#4da7a7", "#9a5fd1", "#9ab7ed"];
 const whiteTheme = ["#e9e7e7", "#000", "#4da7a2", "#9a5fd2", "#9ab7e2"];
@@ -20,7 +20,7 @@ const availableCommands = ["aboutme", "clear", "echo", "help", "social", "theme"
 let commandsHistory = [];
 let historyIndex = 1;
 
-
+welcomeMessage();
 
 function verifyInput(input) {
   const fullCommand = input.value.trim();
@@ -125,7 +125,7 @@ function commandListener(fullCommand) {
       addOutput(`welcome &nbsp;&nbsp;&nbsp;&nbsp; - Welcome message`, feedbackColors[0]);
       break;
     case ('social'):
-      addOutput(`Social Media...\nImagine\nImagine2`, feedbackColors[0]);
+      addOutput(`My socials:\n<a href="https://github.com/DavldMA">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/david-miguel-0a5422248/">LinkedIn</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.youtube.com/channel/UCwoevtjXTlM-7VAuCxbxjnA">Youtube</a>`, feedbackColors[0]);
       break;
     case ('theme'):
       if(!inputStr) {
@@ -135,12 +135,29 @@ function commandListener(fullCommand) {
       }
       break;
     case ('welcome'):
-      addOutput(`working on it`, feedbackColors[0]);
+      welcomeMessage();
       break;
     default:
       addOutput(`Command not found: ${command}\n`, feedbackColors[1]);
       break;
     }
+}
+
+function welcomeMessage() {
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣷⣤⣙⢻⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⡿⠛⠛⠿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⠿⣆⠀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀', feedbackColors[0]);
+  addOutput('⠀⢀⣾⣿⣿⠿⠟⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠻⠿⣿⣿⣷⡀⠀', feedbackColors[0]);
+  addOutput('⣠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠈⠙⠻⣄', feedbackColors[0]);
+  addOutput('\nWelcome to my portfolio! Type "help" to get started.\n&nbsp;', feedbackColors[3]);
 }
 
 function themeChanger(inputStr) {

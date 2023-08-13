@@ -12,10 +12,19 @@ body {
     font-family: 'Terminal', monospace;
     background-color: var(--background);
     color: var(--color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     height: 100vh;
     padding: 1rem;
     overflow: hidden;
+}
+
+a, a:visited, a:active {
+    color: var(--color1);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color2);
 }
 
 #output {
@@ -46,7 +55,7 @@ body {
     border: none;
     color: var(--color);
     align-self: flex-end;
-    font-size: 1rem;
+    font-size: 0.8rem;
     outline: none;
     padding: 0;
     width: calc(100% - 50px);
