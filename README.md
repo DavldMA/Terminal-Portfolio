@@ -18,7 +18,7 @@ A unique portfolio website that brings the nostalgia of a terminal interface to 
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/Terminal-Portfolio.git
+   git clone https://github.com/DavldMA/Terminal-Portfolio.git
    ```
 
 2. Customize your portfolio:
