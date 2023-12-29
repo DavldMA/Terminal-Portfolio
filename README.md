@@ -35,4 +35,5 @@ A unique portfolio website that brings the nostalgia of a terminal interface to 
 
 ## Showcase:
 
-- [Link to The Terminal Portfolio Showcase](terminal-portfolio-eight.vercel.app) 
+- [The Terminal Portfolio Showcase](https://terminal-portfolio-eight.vercel.app/)
+
