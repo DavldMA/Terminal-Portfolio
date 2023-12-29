@@ -33,3 +33,6 @@ A unique portfolio website that brings the nostalgia of a terminal interface to 
 5. Deploy:
    - Upload the contents to your preferred hosting service to share your unique portfolio with the world.
 
+## Showcase:
+
+- [Link to The Terminal Portfolio Showcase](terminal-portfolio-eight.vercel.app) 
